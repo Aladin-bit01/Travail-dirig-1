@@ -1,20 +1,46 @@
-// exercice5.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
-
 #include <iostream>
+#include <cstdlib>
+#include <time.h> 
+using namespace std;
+
+
+int devinette(int, int);
 
 int main()
 {
-    std::cout << "Hello World!\n";
+	srand(time(0));
+	int nombreEssaies = devinette(0, 1000);
+	cout << "Bravo! Vous avez reussi en " << nombreEssaies << " tentatives! ";
 }
 
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
 
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
+int devinette(int min, int max) {
+	double valeurAleatoire = (rand() % (max - min + 1)) + min;
+	int answer;
+	int tentative = 0;
+	bool answered = false;
+	while (!answered) {
+		cout << "Entrez un nombre entier : ";
+		cin >> answer;
+		if (answer > max || answer < min) {
+			tentative += 1;
+		}
+		else if (answer < int(valeurAleatoire)) {
+			tentative += 1;
+			cout << "Trop bas. " << endl;
+		}
+
+		else if (answer > int(valeurAleatoire)) {
+			tentative += 1;
+			cout << "Trop haut. " << endl;
+		}
+
+		else {
+			tentative += 1;
+			return tentative;
+		}
+
+
+
+	}
+}
