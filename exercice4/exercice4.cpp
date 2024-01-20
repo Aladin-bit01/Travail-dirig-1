@@ -1,20 +1,38 @@
-// exercice4.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
-
 #include <iostream>
+using namespace std;
 
-int main()
-{
-    std::cout << "Hello World!\n";
+int russianMultiplication(int, int);
+
+struct Test {
+	int x, y, result;
+};
+
+int main(){
+	Test test1{37, 129, (37 * 129)};
+	Test test2{78, 139, (78 * 139)};
+	Test test3{55, 219, (55 * 219)};
+
+	Test mesTests[3] = { test1, test2, test3 };
+
+	int passedTests = 0;
+	for (auto unitTest : mesTests) {
+		if (unitTest.result == russianMultiplication(unitTest.x, unitTest.y)) {
+			passedTests += 1;
+		}
+	}
+	cout << passedTests << "/3 tests passent.";
 }
 
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
-
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
+int russianMultiplication(int num1, int num2) {
+	int produit = 0;
+	if (num1 % 2 != 0)
+		produit += num2;
+	while (num1 != 1) {
+		num1 = num1 / 2;
+		num2 = num2 * 2;
+		if (num1 % 2 != 0) {
+			produit += num2;
+		}
+	}
+	return produit;
+}
