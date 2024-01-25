@@ -2,24 +2,36 @@
 #include <cmath>
 #include <iomanip>
 
-double calculate_sequence_limit(double precision) {
-    double U_n = 1;
-    double U_next;
+/*
+* Calcule la limite de la suite récurrente avec une précision donnée.
+*/
+
+double calculLimiteSuite(double precision) {
+    double uPresent = 1.0; //U0
+    double uProchain;
+
     do {
-        U_next = std::sqrt(2 + U_n);
-        if (std::abs(U_next - U_n) < precision) {
+        uProchain = std::sqrt(2.0 + uPresent); //U(n+1) = sqrt(2 + Un)
+        if (std::abs(uProchain - uPresent) < precision) {
             break;
         }
-        U_n = U_next;
+        uPresent = uProchain;
     } while (true);
 
-    return U_next;
+    return uProchain;
 }
-int main()
-{
-    double precision = 0.00001;
-    double limit = calculate_sequence_limit(precision);
-    std::cout << "La limite de la séquence est approximativement: " << std::setprecision(10)
-            << limit << std::endl;
+
+/*
+* Affiche la limite de la suite avec la précision de 5 chiffres après la virgule.
+*/
+
+void afficheLimiteSuite(double precision) {
+    double limit = calculLimiteSuite(precision);
+    std::cout << "La limite de la séquence est approximativement: "
+        << std::fixed << std::setprecision(5) << limit << std::endl;
+}
+int main() {
+    const double kPrecision = 0.00001; // 5 chiffres apres la virgule
+    afficheLimiteSuite(kPrecision);
     return false;
 }
