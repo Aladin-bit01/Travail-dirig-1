@@ -1,50 +1,53 @@
+/**
+* Programme qui demande un chiffre à l'utilisateur et l'ajoute à un tableau de 5 chiffres ordonnées de manière croissante
+* tout en s'assurant de conserver l'ordre croissant des valeurs après avoir ajouté l'entrée de l'utilisateur
+* \file   exercice3.cpp
+* \author Alaa Eddin et Harry
+* \date   27 janvier 2024
+* Créé le 20 janvier 2024
+*/
+
+
 #include <iostream>
 #include <string>
-#include <algorithm> //header pour pouvoir appeler la fonction sort() sur le tableau 
-
+#include <algorithm> 
 using namespace std;
 
+
 int userPrompt();
-//nombre d'éléments dans le tableau de départ 
-int const NUMOFELEMETNS = 5;
+int const numOfElementsInitialList = 5;
+int const numOfElementsNewList = 6;
 
 int main(){
-	//Tableau C++
-	int numberList[5] = { 1, 3, 4, 7, 9 };
-	//Valeur donnée par l'utilisateur 
-	int userNum = userPrompt();
-	//Nouveau tableau 
-	int newNumberList[6]{};
+
+	int listOfNumbers[5] = {1, 3, 4, 7, 9};
+	int userNumber = userPrompt();
+	int newListOfNumbers[6] = {};
 	
-	//Remplir le nouveau tableau avec les valeurs de l'ancien tableau et le userinput
-	for (int i =0 ; i < NUMOFELEMETNS; i++) {
-		newNumberList[i] = numberList[i];
+	for (int i =0 ; i < numOfElementsInitialList; i++) {
+		newListOfNumbers[i] = listOfNumbers[i];
 	}
-	newNumberList[NUMOFELEMETNS] = userNum;
+	newListOfNumbers[numOfElementsInitialList] = userNumber;
 
+	sort(newListOfNumbers, newListOfNumbers + numOfElementsNewList);
 
-	// Sort le nouveau tableau 	
-	int size = 6;	//nombre d'éléments dans le nouveau tableau ;
-	sort(newNumberList, newNumberList+size);
-
-	//Affichage des valeurs 
-	for (auto e : newNumberList) {
-		cout << e << endl;
+	for (auto element : newListOfNumbers) {
+		cout << element << endl;
 	}
-
 }
 
 
 int userPrompt() {
 	string userInput;
-	while (true) {
-		try{
+	bool   isActive = true;
+	while (isActive) {
+		try {
 			cout << "Saisissez un entier : ";
 			cin >> userInput;
-			int integerNum = stoi(userInput);
-			return integerNum;
+			int integerNumber = stoi(userInput);
+			return integerNumber;
 		}
-		catch (const std::invalid_argument& e){
+		catch (const invalid_argument& e) {
 			cout << "La valeur entree est non valide" << endl;
 			continue;
 		}	

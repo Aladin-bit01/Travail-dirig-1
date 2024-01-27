@@ -1,3 +1,13 @@
+/**
+* Programme qui prend une phrase comme entree de l'utilisateur puis il retourne le mot le plus long, le mot le plus court 
+* et la moyenne de nombre des lettres dans la phrase par mot
+* \file   exercice1.cpp
+* \author Alaa Eddin et Harry
+* \date   27 janvier 2024
+* Créé le 20 janvier 2024
+*/
+
+
 #include <iostream>
 #include <string>
 #include <vector>
@@ -12,17 +22,17 @@ int main() {
     string sentence; 
     cout << "Saisissez une phrase: ";
     getline(cin, sentence);
-    vector<string> sentenceWords=  splitSentence(sentence);  
-    string shortest = shortestWord(sentenceWords);
-    string longest = longestWord(sentenceWords);
-    double average =  averageLength(sentenceWords);
+    vector<string> vectorOfTheSentenceWords =  splitSentence(sentence);  
+    string shortest = shortestWord(vectorOfTheSentenceWords);
+    string longest = longestWord(vectorOfTheSentenceWords);
+    double average =  averageLength(vectorOfTheSentenceWords);
     cout << "Le mot le plus court est : " << shortest << endl;
     cout << "Le mot le plus long est : " << longest << endl;
     cout << "La longueur moyenne est : " << average << " lettres";
 }
 
 vector<string> splitSentence(string phrase) {
-    string word;
+    string          word;
     vector <string> sentenceWords;
     for (char letter : phrase) {
         if (letter != ' ') {
@@ -50,7 +60,7 @@ string shortestWord(vector<string>listWords) {
 }
 
 string longestWord(vector<string> listWords) {
-    int length = 0;
+    int    length = 0;
     string longest = " ";
     for (auto word : listWords) {
         if (word.length() > length) {
@@ -66,7 +76,7 @@ double averageLength(vector<string> listWords) {
     for (auto word : listWords) {
         average += word.length();
     }
-    average = average / size(listWords);
+    average /= size(listWords);
     return average;
 }
 
