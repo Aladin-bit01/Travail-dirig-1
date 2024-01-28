@@ -2,8 +2,7 @@
 * Programme qui charge une grille de jeu de Tic-Tac-Toe à partir d'un fichier et détermine le résultat
 * de la partie : si le joueur 1 (utilise "x") gagne, si le joueur 2 (utilise "o") gagne ou s'il y a
 * une égalité. Il détermine le gagne si un joueur forme une ligne de trois cases successives par la
-* longueur, hauteur ou la diagonale. ATTENTION notre programme fonctionnait de notre côté quand on
-* mettait les fichiers des grilles dans le folder Debug. 
+* longueur, hauteur ou la diagonale
 * \file   exercice6.cpp
 * \author Alaa Eddin et Harry
 * \date   27 janvier 2024
